@@ -18,6 +18,7 @@ class PatientDetails extends StatefulWidget {
 
 class _PatientDetailsState extends State<PatientDetails> {
   double _rating = 3;
+  String _ratingMeaning = "NEUTRAL";
 
   @override
   Widget build(BuildContext context) {
@@ -144,12 +145,12 @@ class _PatientDetailsState extends State<PatientDetails> {
                   ],
                 )),
             SizedBox(
-              height: 10.0,
+              height: 20.0,
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 15.0),
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Colors.white70,
                 borderRadius: BorderRadius.circular(10.0),
                 boxShadow: [
                   BoxShadow(
@@ -200,9 +201,45 @@ class _PatientDetailsState extends State<PatientDetails> {
                           ),
                           onRatingUpdate: (rating) {
                             print(rating);
-                            setState(() {
-                              _rating = rating;
-                            });
+                            setState(
+                              () {
+                                _rating = rating;
+                                switch (_rating.round()) {
+                                  case 1:
+                                    {
+                                      _ratingMeaning = "POOR";
+                                    }
+                                    break;
+
+                                  case 2:
+                                    {
+                                      _ratingMeaning = "OKAY";
+                                    }
+                                    break;
+
+                                  case 3:
+                                    {
+                                      _ratingMeaning = "NEUTRAL";
+                                    }
+                                    break;
+                                  case 4:
+                                    {
+                                      _ratingMeaning = "GOOD";
+                                    }
+                                    break;
+                                  case 5:
+                                    {
+                                      _ratingMeaning = "EXCELLENT";
+                                    }
+                                    break;
+
+                                  default:
+                                    {
+                                      _ratingMeaning = "NEUTRAL";
+                                    }
+                                }
+                              },
+                            );
                           },
                         ),
                         SizedBox(
@@ -220,6 +257,13 @@ class _PatientDetailsState extends State<PatientDetails> {
                               ),
                               Text(
                                 "${_rating.toString()}",
+                                style: kHomePage,
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              Text(
+                                "[$_ratingMeaning]",
                                 style: kHomePage,
                               )
                             ],

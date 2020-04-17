@@ -36,3 +36,10 @@ TextStyle kSubmitText = TextStyle(
   fontWeight: FontWeight.bold,
   letterSpacing: 1.0,
 );
+
+TextStyle kThankYou = TextStyle(
+  fontFamily: "YouTube",
+  color: Colors.black,
+  fontWeight: FontWeight.bold,
+  fontSize: 18.5,
+);
